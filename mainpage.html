@@ -1,0 +1,1327 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta charset="utf-8" />
+    <style>
+      @import url("https://cdnjs.cloudflare.com/ajax/libs/meyer-reset/2.0/reset.min.css");
+      @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;800&display=swap');
+
+      :root {
+        --slate-400: rgba(148, 163, 184, 1);
+        --slate-900: rgba(15, 23, 42, 1);
+        --slate-200: rgba(226, 232, 240, 1);
+        --slate-300: rgba(203, 213, 225, 1);
+        --large-font-family: "Inter", Helvetica;
+        --large-font-weight: 600;
+        --large-font-size: 18px;
+        --large-letter-spacing: 0px;
+        --large-line-height: 28px;
+        --large-font-style: normal;
+        --subtle-font-family: "Inter", Helvetica;
+        --subtle-font-weight: 400;
+        --subtle-font-size: 14px;
+        --subtle-letter-spacing: 0px;
+        --subtle-line-height: 20px;
+        --subtle-font-style: normal;
+        --body-medium-font-family: "Inter", Helvetica;
+        --body-medium-font-weight: 500;
+        --body-medium-font-size: 14px;
+        --body-medium-letter-spacing: 0px;
+        --body-medium-line-height: 24px;
+        --body-medium-font-style: normal;
+      }
+
+      * {
+        -webkit-font-smoothing: antialiased;
+        box-sizing: border-box;
+      }
+
+      html, body {
+        margin: 0px;
+        height: 100%;
+      }
+
+      button:focus-visible {
+        outline: 2px solid #4a90e2 !important;
+        outline: -webkit-focus-ring-color auto 5px !important;
+      }
+
+      a {
+        text-decoration: none;
+      }
+
+      .desktop {
+        background-color: #ffffff;
+        display: grid;
+        justify-items: center;
+        align-items: start;
+        width: 100vw;
+      }
+
+      .desktop .div {
+        background-color: #ffffff;
+        width: 1440px;
+        height: 1024px;
+        position: relative;
+      }
+
+      .desktop .overlap {
+        position: absolute;
+        width: 940px;
+        height: 1024px;
+        top: 0;
+        left: 500px;
+        background-color: #ffffff;
+      }
+
+      .desktop .content-container {
+        position: absolute;
+        width: 530px;
+        height: 368px;
+        top: 391px;
+        left: 205px;
+        background-color: #ffffff;
+        border-radius: 5px;
+      }
+
+      .desktop .content {
+        display: flex;
+        flex-direction: column;
+        width: 480px;
+        align-items: flex-start;
+        gap: 8px;
+        position: relative;
+        top: 27px;
+        left: 25px;
+      }
+
+      .desktop .title {
+        position: relative;
+        width: fit-content;
+        margin-top: -1.00px;
+        font-family: var(--large-font-family);
+        font-weight: var(--large-font-weight);
+        color: #0f172a;
+        font-size: var(--large-font-size);
+        letter-spacing: var(--large-letter-spacing);
+        line-height: var(--large-line-height);
+        white-space: nowrap;
+        font-style: var(--large-font-style);
+      }
+
+      .desktop .text-wrapper {
+        position: relative;
+        width: 464px;
+        font-family: var(--subtle-font-family);
+        font-weight: var(--subtle-font-weight);
+        color: #64748b;
+        font-size: var(--subtle-font-size);
+        letter-spacing: var(--subtle-letter-spacing);
+        line-height: var(--subtle-line-height);
+        font-style: var(--subtle-font-style);
+      }
+
+      .desktop .dialog {
+        display: flex;
+        flex-direction: column;
+        width: 530px;
+        align-items: flex-start;
+        gap: 16px;
+        padding: 24px;
+        position: absolute;
+        top: 777px;
+        left: 214px;
+        background-color: #ffffff;
+        border-radius: 6px;
+        border: 1px solid;
+        border-color: #cbd5e1;
+      }
+
+      .desktop .div-2 {
+        display: inline-flex;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 8px;
+        position: relative;
+        flex: 0 0 auto;
+      }
+
+      .desktop .button-section {
+        display: flex;
+        width: 464px;
+        justify-content: flex-end;
+        gap: 8px;
+        align-items: center;
+        position: relative;
+        flex: 0 0 auto;
+      }
+
+      .desktop .button {
+        all: unset;
+        box-sizing: border-box;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        gap: 10px;
+        padding: 8px 16px;
+        position: relative;
+        flex: 0 0 auto;
+        background-color: #ffffff;
+        border-radius: 6px;
+        border: 1px solid;
+        border-color: var(--slate-200);
+      }
+
+      .desktop .cancel {
+        position: relative;
+        width: fit-content;
+        margin-top: -1.00px;
+        font-family: var(--body-medium-font-family);
+        font-weight: var(--body-medium-font-weight);
+        color: #0f172a;
+        font-size: var(--body-medium-font-size);
+        letter-spacing: var(--body-medium-letter-spacing);
+        line-height: var(--body-medium-line-height);
+        white-space: nowrap;
+        font-style: var(--body-medium-font-style);
+      }
+
+      .desktop .continue-wrapper {
+        all: unset;
+        box-sizing: border-box;
+        display: inline-flex;
+        justify-content: center;
+        gap: 10px;
+        padding: 8px 16px;
+        background-color: var(--slate-900);
+        border-radius: 6px;
+        align-items: center;
+        position: relative;
+        flex: 0 0 auto;
+      }
+
+      .desktop .continue {
+        position: relative;
+        width: fit-content;
+        margin-top: -1.00px;
+        font-family: var(--body-medium-font-family);
+        font-weight: var(--body-medium-font-weight);
+        color: #ffffff;
+        font-size: var(--body-medium-font-size);
+        letter-spacing: var(--body-medium-letter-spacing);
+        line-height: var(--body-medium-line-height);
+        white-space: nowrap;
+        font-style: var(--body-medium-font-style);
+      }
+
+      .desktop .search-container {
+        position: absolute;
+        width: 532px;
+        height: 228px;
+        top: 107px;
+        left: 205px;
+      }
+
+      .desktop .textarea {
+        display: inline-flex;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 6px;
+        position: absolute;
+        top: 100px;
+        left: 0;
+      }
+
+      .desktop .group {
+        position: relative;
+        width: 530px;
+        height: 80px;
+      }
+
+      .desktop .type-your-message-wrapper {
+        display: flex;
+        width: 530px;
+        height: 80px;
+        align-items: flex-start;
+        gap: 10px;
+        padding: 8px 12px;
+        position: relative;
+        background-color: #ffffff;
+        border-radius: 6px;
+        border: 1px solid;
+        border-color: var(--slate-300);
+      }
+
+      .desktop .query-input {
+        position: relative;
+        flex: 1;
+        margin-top: -1.00px;
+        font-family: var(--subtle-font-family);
+        font-weight: var(--subtle-font-weight);
+        color: #0f172a;
+        font-size: var(--subtle-font-size);
+        letter-spacing: var(--subtle-letter-spacing);
+        line-height: var(--subtle-line-height);
+        font-style: var(--subtle-font-style);
+        border: none;
+        outline: none;
+        background: transparent;
+        resize: none;
+      }
+
+      .desktop .query-input::placeholder {
+        color: var(--slate-400);
+      }
+
+      .desktop .div-wrapper {
+        all: unset;
+        box-sizing: border-box;
+        display: flex;
+        width: 530px;
+        justify-content: center;
+        gap: 10px;
+        padding: 8px 16px;
+        background-color: var(--slate-900);
+        border-radius: 6px;
+        align-items: center;
+        position: relative;
+        flex: 0 0 auto;
+      }
+
+      .desktop .search-title {
+        position: absolute;
+        top: 0;
+        left: 50px;
+        font-family: "Inter-ExtraBold", Helvetica;
+        font-weight: 800;
+        color: var(--slate-900);
+        font-size: 48px;
+        text-align: center;
+        letter-spacing: -0.58px;
+        line-height: 60px;
+        white-space: nowrap;
+      }
+
+      .desktop .overlap-group {
+        position: absolute;
+        width: 500px;
+        height: 1024px;
+        top: 0;
+        left: 0;
+        background-color: #f8fafc;
+      }
+
+      .desktop .alarm-container,
+      .desktop .overlap-wrapper,
+      .desktop .overlap-group-wrapper {
+        position: absolute;
+        width: 410px;
+        height: 150px;
+        left: 50px;
+        background-color: #ffffff;
+        border-radius: 6px;
+        border: 1px solid;
+        border-color: #e5e7eb;
+        box-shadow: 0px 4px 4px #a8a6a640;
+       /* display: none;  기본 알람 숨김 */
+
+        opacity: 0; 
+        visibility: hidden; /* 레이아웃을 차지하지 않게 합니다. */
+        transition: opacity 0.5s ease-in-out, visibility 0.5s ease-in-out; 
+      }
+    
+
+      .desktop .alarm-container.show,
+      .desktop .overlap-wrapper.show,
+      .desktop .overlap-group-wrapper.show {
+        opacity: 1;
+        visibility: visible;
+      }  
+
+
+      .desktop .alarm-container { top: 391px; }
+      .desktop .overlap-wrapper { top: 584px; }
+      .desktop .overlap-group-wrapper { top: 777px; }
+
+      .desktop .alarm-content {
+        position: relative;
+        width: 400px;
+        height: 150px;
+      }
+        
+      .desktop .alarm-icon {
+        position: absolute;
+        width: 47px;
+        height: 47px;
+        top: 50px;
+        left: 25px;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: white;
+        font-weight: bold;
+        font-size: 20px;
+      }
+
+      .desktop .alarm-title {
+        position: absolute;
+        top: 24px;
+        left: 87px;
+        font-family: "Inter-SemiBold", Helvetica;
+        font-weight: 600;
+        color: #000000;
+        font-size: 12px;
+        letter-spacing: 0;
+        line-height: 20px;
+        white-space: nowrap;
+      }
+
+      .desktop .alarm-description {
+        position: absolute;
+        top: 52px;
+        left: 87px;
+        font-family: "Inter-Regular", Helvetica;
+        font-weight: 400;
+        color: #0f172a;
+        font-size: 11px;
+        letter-spacing: 0;
+        line-height: 20px;
+        white-space: pre-wrap;
+      }
+
+      .desktop .time-text {
+        position: absolute;
+        top: 73px;
+        left: 87px;
+        font-family: "Inter-Regular", Helvetica;
+        font-weight: 400;
+        color: #64748b;
+        font-size: 12px;
+        letter-spacing: 0;
+        line-height: 20px;
+        white-space: nowrap;
+      }
+
+      .desktop .ignore-text-wrapper {
+        left: 165px;
+        background-color: #ffffff;
+        border: 1px solid;
+        border-color: #e5e7eb;
+        position: absolute;
+        width: 85px;
+        height: 35px;
+        top: 94px;
+        border-radius: 5px;
+        cursor: pointer;
+      }
+
+      .desktop .ignore-text {
+        position: absolute;
+        top: 6px;
+        left: 29px;
+        font-family: "Inter-Regular", Helvetica;
+        font-weight: 400;
+        color: #0f172a;
+        font-size: 14px;
+        letter-spacing: 0;
+        line-height: 20px;
+        white-space: nowrap;
+      }
+
+      .desktop .view-details-text-wrapper {
+        left: 283px;
+        background-color: #0f172a;
+        position: absolute;
+        width: 85px;
+        height: 35px;
+        top: 94px;
+        border-radius: 5px;
+        cursor: pointer;
+      }
+
+      .desktop .interfaces-button-wrapper {
+        left: 265px;
+        position: absolute;
+        bottom: 10px;
+        top: 94px;
+        width: 135px;
+        height: 35px;
+        cursor: pointer;
+        border-radius: 5px;
+      }
+
+      .desktop .interfaces-button {
+        background-color: #0f172a;
+        color: #ffffff;
+        padding: 8px 16px;
+        border-radius: 5px;
+        font-size: 14px;
+        white-space: nowrap;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        height: 100%; /* 부모의 높이를 상속받아 35px로 만듭니다. */
+      }
+      
+      .desktop .log-button {
+        left: 265px;
+        background-color: #0f172a;
+        position: absolute;
+        width: 135px;
+        height: 35px;
+        top: 94px;
+        border-radius: 5px;
+        cursor: pointer;
+      }
+      .desktop .log-button-text {
+        position: absolute;
+        top: 7px;
+        left: 23px;
+        font-family: "Inter-Regular", Helvetica;
+        font-weight: 400;
+        color: #ffffff;
+        font-size: 14px;
+        letter-spacing: 0;
+        line-height: 20px;
+        white-space: nowrap;
+      }
+
+      .desktop .optic-power-text-wrapper {
+        left: 265px;
+        background-color: #0f172a;
+        position: absolute;
+        width: 135px;
+        height: 35px;
+        top: 94px;
+        border-radius: 5px;
+        cursor: pointer;
+      }
+
+      .desktop .optic-power-text {
+        position: absolute;
+        top: 7px;
+        left: 23px;
+        font-family: "Inter-Regular", Helvetica;
+        font-weight: 400;
+        color: #ffffff;
+        font-size: 14px;
+        letter-spacing: 0;
+        line-height: 20px;
+        white-space: nowrap;
+      }
+        
+
+      .desktop .view-details-text {
+        position: absolute;
+        top: 7px;
+        left: 17px;
+        font-family: "Inter-Regular", Helvetica;
+        font-weight: 400;
+        color: #ffffff;
+        font-size: 14px;
+        letter-spacing: 0;
+        line-height: 20px;
+        white-space: nowrap;
+      }
+
+      .desktop .menu-icon {
+        position: absolute;
+        width: 90px;
+        height: 60px;
+        object-fit: contain;
+        top: 9px;
+        left: 550px;
+        cursor: default;
+      }
+
+      .desktop .company-text-bottom {
+        position: absolute;
+        bottom: 30px;
+        left: 50px;
+        font-family: "Inter", Helvetica;
+        font-weight: 500;
+        font-size: 14px;
+        color: var(--slate-400); /* 회색 텍스트 색상 */
+      }
+
+      .desktop .company-text span {
+        font-weight: 600; /* 각 사업자명은 조금 더 진하게 표시 */
+      }
+        
+      
+        
+      .desktop .interfaces-dropdown {
+        position: absolute;
+        bottom: 45px;
+        left: 0;
+        background-color: #ffffff;
+        border: 1px solid #e5e7eb;
+        border-radius: 5px;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        width: 200px;
+        max-height: 150px;
+        overflow-y: auto;
+        font-size: 12px;
+      }
+
+      .desktop .interfaces-dropdown .item {
+        padding: 8px;
+        border-bottom: 1px solid #e5e7eb;
+      }
+
+      .desktop .interfaces-dropdown .item:last-child {
+        border-bottom: none;
+      }
+
+      .desktop .clickable-button {
+        cursor: pointer;
+      }
+
+      /* 알람 타입별 아이콘 색상 */
+      .alarm-icon.minor {
+        background-color: #f59e0b;
+      }
+
+      .alarm-icon.major {
+        background-color: #f97316;
+      }
+
+      .alarm-icon.critical {
+        background-color: #dc2626;
+      }
+
+      /* 로딩 */
+      .loading {
+        display: none;
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        background: white;
+        padding: 20px 40px;
+        border-radius: 12px;
+        box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+        z-index: 1000;
+      }
+
+      .loading.show {
+        display: flex;
+        align-items: center;
+      }
+
+      .loading-spinner {
+        width: 20px;
+        height: 20px;
+        border: 3px solid #f3f3f3;
+        border-top: 3px solid var(--slate-900);
+        border-radius: 50%;
+        animation: spin 1s linear infinite;
+        margin-right: 10px;
+      }
+
+      @keyframes spin {
+        0% { transform: rotate(0deg); }
+        100% { transform: rotate(360deg); }
+      }
+
+      /* 알림 */
+      .notification {
+        position: fixed;
+        top: 20px;
+        right: 20px;
+        padding: 16px 20px;
+        border-radius: 8px;
+        color: white;
+        font-weight: 600;
+        z-index: 1000;
+        opacity: 0;
+        transform: translateX(100%);
+        transition: all 0.3s ease;
+      }
+
+      .notification.show {
+        opacity: 1;
+        transform: translateX(0);
+      }
+
+      .notification.success {
+        background: #10b981;
+      }
+
+      .notification.error {
+        background: #dc2626;
+      }
+
+      .desktop .arrow-button {
+        all: unset;
+        box-sizing: border-box;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 35px;
+        height: 35px;
+        background-color: #0f172a;
+        border-radius: 5px;
+        cursor: pointer;
+        color: white;
+        font-size: 16px;
+        text-align: center;
+      }
+
+      .desktop .button-row {
+        display: flex;
+        gap: 8px;
+        position: absolute;
+        top: 94px;
+        right: 25px;
+      }
+
+      .desktop .dropdown-container {
+        position: absolute;
+        bottom: 45px;
+        right: 0;
+        background-color: #ffffff;
+        border: 1px solid #e5e7eb;
+        border-radius: 5px;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        width: 250px;
+        max-height: 150px;
+        overflow-y: auto;
+        font-size: 12px;
+        display: none;
+        padding: 8px;
+        z-index: 10;
+      }
+
+      .desktop .dropdown-item {
+        padding: 4px 0;
+        border-bottom: 1px solid #e5e7eb;
+      }
+      .desktop .dropdown-item:last-child {
+        border-bottom: none;
+      }
+
+      /* 조치 버튼 팝업 스타일 */
+      .action-popup {
+          position: fixed;
+          top: 0;
+          left: 0;
+          width: 100%;
+          height: 100%;
+          background-color: rgba(0, 0, 0, 0.5); /* 반투명 검은색 배경 */
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          z-index: 2000; /* 다른 요소 위에 표시 */
+      }
+
+      .popup-content {
+          background-color: #ffffff;
+          padding: 30px;
+          border-radius: 10px;
+          box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+          text-align: center;
+          max-width: 400px;
+          /* 아래줄 추가 스크롤용 */
+          max-height: 80vh; /* 화면 높이의 80%를 최대 높이로 설정 */
+          overflow-y: auto; /* 내용이 넘치면 스크롤바를 만듭니다 */
+          padding-right: 15px; /* 스크롤바가 생길 경우 텍스트가 잘리지 않도록 오른쪽 패딩 추가 */
+      }
+
+      .popup-content p {
+          font-size: 16px;
+          color: var(--slate-900);
+          margin-bottom: 20px;
+          line-height: 1.5;
+          /* 아래줄 추가 */
+          flex-grow: 1;
+      }
+
+      .button-container {
+          display: flex;
+          gap: 15px;
+          justify-content: center;
+          /*  margin-top: auto; */
+      }
+
+      .popup-content button {
+          all: unset;
+          box-sizing: border-box;
+          display: inline-flex;
+          justify-content: center;
+          align-items: center;
+          padding: 10px 20px;
+          background-color: var(--slate-900);
+          color: #ffffff;
+          border-radius: 6px;
+          font-weight: 500;
+          cursor: pointer;
+          transition: background-color 0.2s ease;
+      }
+
+      .popup-content button:hover {
+          background-color: #334155;
+      }
+
+
+
+    </style>
+  </head>
+  <body>
+    <div class="desktop">
+      <div class="div">
+        <div class="overlap">
+          <div class="content-container" id="analysisContent" style="display: none;">
+            <div class="content">
+              <div class="title">대응 메뉴얼</div>
+              <p class="text-wrapper" id="analysisText">
+                분석 결과가 여기에 표시됩니다.
+              </p>
+            </div>
+          </div>
+            
+          <div class="search-container">
+            <div class="textarea">
+              <form id="queryForm" class="div-2">
+                <div class="group">
+                  <div class="type-your-message-wrapper">
+                    <textarea id="queryInput" class="query-input" placeholder="Enter your query..." required></textarea>
+                  </div>
+                </div>
+                <button type="submit" class="div-wrapper" id="sendButton">
+                  <div class="continue">Send Request</div>
+                </button>
+              </form>
+            </div>
+            <div class="search-title">무엇을 도와드릴까요?</div>
+          </div>
+        </div>
+        <div class="overlap-group">
+          <div class="alarm-container" id="alarmContainer1">
+            <div class="alarm-content">
+              <div class="alarm-icon"></div>
+              <div class="alarm-title"></div>
+              <p class="alarm-description"></p>
+              <div class="time-text"></div>
+              <div class="interfaces-button-wrapper" style="display:none;">
+                <div class="interfaces-button">인터페이스 목록</div>
+                <div class="interfaces-dropdown" style="display:none;"></div>
+              </div>
+              <div class="ignore-text-wrapper" data-id="" onclick="window.networkApp.ignoreAlarm(this)">
+                <div class="ignore-text">무시</div>
+              </div>
+              <div class="optic-power-text-wrapper" style="display:none;">
+                <div class="optic-power-text">발생 원인 확인</div>
+              </div>
+              <div class="log-button" style="display:none;">
+                <div class="log-button-text">발생 원인 확인</div>
+              </div>
+            </div>
+          </div>
+          <div class="overlap-wrapper" id="alarmContainer2">
+            <div class="alarm-content">
+              <div class="alarm-icon"></div>
+              <div class="alarm-title"></div>
+              <p class="alarm-description"></p>
+              <div class="time-text"></div>
+              <div class="interfaces-button-wrapper" style="display:none;">
+                <div class="interfaces-button">인터페이스 목록</div>
+                <div class="interfaces-dropdown" style="display:none;"></div>
+              </div>
+              <div class="ignore-text-wrapper" data-id="" onclick="window.networkApp.ignoreAlarm(this)">
+                <div class="ignore-text">무시</div>
+              </div>
+              <div class="optic-power-text-wrapper" style="display:none;">
+                <div class="optic-power-text">발생 원인 확인</div>
+              </div>
+              <div class="log-button" style="display:none;">
+                <div class="log-button-text">발생 원인 확인</div>
+              </div>
+            </div>
+          </div>
+          <div class="overlap-group-wrapper" id="alarmContainer3">
+            <div class="alarm-content">
+              <div class="alarm-icon"></div>
+              <div class="alarm-title"></div>
+              <p class="alarm-description"></p>
+              <div class="time-text"></div>
+              <div class="interfaces-button-wrapper" style="display:none;">
+                <div class="interfaces-button">인터페이스 목록</div>
+                <div class="interfaces-dropdown" style="display:none;"></div>
+              </div>
+              <div class="ignore-text-wrapper" data-id="" onclick="window.networkApp.ignoreAlarm(this)">
+                <div class="ignore-text">무시</div>
+              </div>
+              <div class="optic-power-text-wrapper" style="display:none;">
+                <div class="optic-power-text">발생 원인 확인</div>
+              </div>
+              <div class="log-button" style="display:none;">
+                <div class="log-button-text">발생 원인 확인</div>
+              </div>
+            </div>
+          </div>
+          <img class="menu-icon" src="{{ url_for('static', filename='logo.webp') }}" alt="메뉴">
+          <div class="company-text-bottom">
+            <span class="netcore">NetCoreTech, Inc.</span> |
+            <span class="neouly">Neouly</span> |
+            <span class="dina">DINA</span> |
+            <span class="zen">ZENSYSTEMS</span>
+          </div>
+        </div>
+      </div>
+
+    <div class="loading" id="loading">
+      <div class="loading-spinner"></div>
+      네트워크 분석 중...
+    </div>
+
+    <div class="notification" id="notification"></div>
+
+    <script>
+      class NetworkMonitorApp {
+        constructor() {
+          this.currentAnalysisId = null;
+          this.alarms = []; // 알람 데이터를 저장할 배열
+          this.pollingInterval = null;
+          this.timeoutTimer = null;
+          this.initializeApp();
+        }
+
+        initializeApp() {
+          this.setupEventListeners();
+          this.checkSystemHealth();
+          this.startAlarmPolling();
+          this.startPollingResults();
+        }
+
+        setupEventListeners() {
+          const queryForm = document.getElementById('queryForm');
+
+          if (queryForm) {
+            queryForm.addEventListener('submit', (e) => this.handleQuery(e, 'queryInput', true));
+          }
+        }
+
+        showOpticPowerPopup(outputPower, rxPower, device, interface_name) {
+          console.log("Optic Power 확인 버튼 클릭됨!")
+          const popupMessage = `${device} Interface ${interface_name} Optic Power TX ${outputPower} / RX ${rxPower}`;
+          alert(popupMessage + "\n" + "- OPTIC TX Power 정상 , RX Power 비정상​"); 
+        }
+
+        ignoreAlarm(element) {
+          const alarmId = element.getAttribute('data-id');
+          if (alarmId) {
+            this.sendIgnoreRequestToServer(alarmId);
+          }
+          element.closest('.alarm-container, .overlap-wrapper, .overlap-group-wrapper').style.display = 'none';
+        }
+
+        
+        async sendIgnoreRequestToServer(alarmId) {
+          try {
+            const response = await fetch(`/api/alarms/ignore/${alarmId}`, {
+              method: 'DELETE'
+            });
+            if (!response.ok) {
+              console.error('서버에서 알람 삭제 실패:', await response.json());
+            }
+          } catch (error) {
+            console.error('알람 삭제 요청 중 네트워크 오류 발생:', error);
+          }
+        }
+
+        showActionButtonsPopup(message, scenarioId) {
+    // 기존 팝업이 있다면 제거 (중복 방지)
+    const existingPopup = document.querySelector('.action-popup');
+    if (existingPopup) existingPopup.remove();
+
+    const popup = document.createElement('div');
+    popup.classList.add('action-popup');
+    popup.innerHTML = `
+        <div class="popup-content">
+            <p>${message}</p>
+            <div class="button-container">
+                <button id="actionBtn1" data-button-id="1">1번 조치</button>
+                <button id="actionBtn2" data-button-id="2">2번 조치</button>
+            </div>
+        </div>
+    `;
+    
+    document.body.appendChild(popup);
+
+    // 버튼 클릭 이벤트 핸들러
+    document.getElementById('actionBtn1').addEventListener('click', () => {
+        this.handleButtonClick(1, scenarioId);
+        popup.remove();
+    });
+
+    document.getElementById('actionBtn2').addEventListener('click', () => {
+        this.handleButtonClick(2, scenarioId);
+        popup.remove();
+    });
+}
+
+        // 버튼 클릭에 따라 동적으로 ID를 계산하고 요청을 보내는 함수
+        handleButtonClick(buttonId, scenarioId) {
+            // 시나리오 및 버튼에 따른 action_id 매핑 테이블
+            const actionMap = {
+                '3': { '1': 1, '2': 2 },
+                '4': { '1': 3, '2': 4 }
+            };
+            
+            // 계산된 action_id
+            const actionId = actionMap[scenarioId][buttonId];
+            
+            if (actionId !== undefined) {
+                this.sendActionRequest(actionId);
+            } else {
+                console.error("Invalid scenarioId or buttonId mapping.");
+            }
+        }
+
+        async sendActionRequest(actionId) {
+            try {
+                const response = await fetch(`/api/anomaly/process/${actionId}`, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ text: "ok" })
+                });
+                const result = await response.json();
+                console.log(`Action ${actionId} response:`, result);
+                this.showNotification(`조치 ${actionId}가 성공적으로 전송되었습니다.`, 'success');
+            } catch (error) {
+                console.error('Failed to send action request:', error);
+                this.showNotification(`조치 전송 실패: ${error.message}`, 'error');
+            }
+        }
+
+
+
+        async handleQuery(e, inputId) {
+          e.preventDefault();
+          const queryInput = document.getElementById(inputId);
+          const query = queryInput.value.trim();
+            
+          if (!query) return;
+          
+          //this.clearPreviousAnalysis();
+          //this.setLoading(true);
+          this.showNotification('Ollama에게 분석 요청을 보냈습니다. 응답을 확인 중...', 'success');
+
+          console.log("Ollama에게 분석 요청을 보냈습니다.", query);
+            
+            
+          try {
+            const response = await fetch('/api/analyze', {
+              method: 'POST',
+              headers: {'Content-Type': 'application/json'},
+              body: JSON.stringify({ query })
+            });
+            
+            if (response.status === 202) {
+              this.showNotification('Ollama 응답 확인. Agent 최종 결과를 기다립니다...', 'info');
+            } else {
+                const errorData = await response.json();
+                this.showNotification(`Ollama 오류 발생: ${response.status} - ${errorData.error}`, 'error');
+                //this.setLoading(false);
+            }
+          } catch (error) {
+            this.showNotification('네트워크 오류가 발생했습니다.', 'error');
+            //this.setLoading(false);
+          }
+        }
+            
+            
+        clearPreviousAnalysis() {
+            const analysisContent = document.getElementById('analysisContent');
+            const analysisText = document.getElementById('analysisText');
+            
+            if (analysisContent) {
+              analysisContent.style.display = 'none';
+            }
+            if (analysisText) {
+              analysisText.innerHTML = '';
+            }
+        }
+        /*async fetchResults() {
+          try {
+        const response = await fetch(`/api/results/latest-result`);
+        const data = await response.json();
+
+        if (response.status === 200 && data.status === "success" && data.result) {
+            // 결과가 있을 경우
+            const scenarioId = data.scenario_id;
+            this.displayAgentAnalysis(data.result.text);
+
+            if (scenarioId === 3 || scenarioId === 4) {
+                this.showActionButtonsPopup(data.result.text, scenarioId);
+            }
+            
+            this.showNotification('AI Agent 최종 분석 완료!', 'success');
+            
+            // 다음 결과가 있는지 다시 확인
+            
+        } else if (response.status === 202) {
+            // 처리 중 상태일 경우, 5초 후 다시 호출
+            setTimeout(() => this.fetchResults(), 5000);
+        } else {
+            // 기타 오류 처리
+            this.showNotification(`서버 오류 발생: ${response.status} - ${data.error}`, 'error');
+            this.setLoading(false);
+        }
+        } catch (error) {
+        console.error("Polling error:", error);
+        this.showNotification('최종 결과 확인 중 네트워크 오류 발생.', 'error');
+        this.setLoading(false);
+    }
+}  */   
+       
+
+        startPollingResults() {
+          if (this.pollingInterval) {
+            clearInterval(this.pollingInterval);
+          }
+
+            this.pollingInterval = setInterval(async () => {
+              try {
+                const response = await fetch(`/api/results/latest-result`);
+                
+                if (response.ok) {  
+                  const data = await response.json();
+                  const scenarioId = data.scenario_id;
+                  if (data.result && data.result.text) {
+                    // 시나리오 1, 2는 텍스트만 표시
+                    if (scenarioId === 1 || scenarioId === 2) {
+                        this.displayAgentAnalysis(data.result.text);
+                    } else if (scenarioId === 3 || scenarioId === 4) {
+                        this.displayAgentAnalysis(data.result.text);
+                        this.showActionButtonsPopup(data.result.text, scenarioId);
+                    }
+                    
+                    this.showNotification('AI Agent 최종 분석 완료!', 'success');
+                    clearInterval(this.pollingInterval);
+                    this.setLoading(false);
+                  }  
+                } else if (response.status === 202) {
+                    // 새로운 agent의 post 결과가 아직 없음. 아무것도 하지 않음.
+                    console.log("아직 새로운 결과 없음");
+                } else {
+                        // 기타 서버 오류
+                    this.showNotification(`서버 오류 발생: ${response.status}`, 'error');
+                    clearInterval(this.pollingInterval);
+                    this.setLoading(false);
+                }  
+              } catch (error) {
+                  console.error("Polling error:", error);
+                  this.showNotification('최종 결과 확인 중 네트워크 오류 발생.', 'error');
+                  clearInterval(this.pollingInterval);
+                  clearTimeout(this.timeoutTimer);
+                  this.setLoading(false);
+              }
+            }, 5000);
+        }  
+
+        startAlarmPolling() {
+    setInterval(async () => {
+      try {
+        const res = await fetch('/api/current-alarms');
+        if (res.ok) {
+          const data = await res.json();
+          if (Array.isArray(data)) {
+            this.displayAlarms(data);
+          } else if (data && data.status === "no new alarm") {
+            this.displayAlarms([]);
+          } else if (data && data.alarms) {
+            this.displayAlarms(data.alarms);
+          } else {
+            console.error("Invalid alarms data received:", data);
+            this.displayAlarms([]);
+          }
+        } else {
+          console.error("Failed to fetch alarms:", res.status);
+          this.displayAlarms([]);
+        }
+      } catch (error) {
+        console.error("Polling error:", error);
+        this.displayAlarms([]);
+      }
+    }, 3000);
+  }
+
+
+        displayAlarms(newAlarms) {
+    const alarmContainers = [
+        document.querySelector('#alarmContainer1'),
+        document.querySelector('#alarmContainer2'),
+        document.querySelector('#alarmContainer3')
+    ];
+
+    const currentAlarmIds = new Set(this.alarms.map(alarm => alarm.id));
+    const newAlarmIds = new Set(newAlarms.map(alarm => alarm.id));
+
+    // 1. 사라진 알람 컨테이너를 숨깁니다.
+    alarmContainers.forEach(container => {
+        const existingId = container.querySelector('.ignore-text-wrapper').getAttribute('data-id');
+        if (existingId && !newAlarmIds.has(existingId)) {
+            container.classList.remove('show');
+        }
+    });
+
+    // 2. 새로운 알람으로 화면을 업데이트합니다.
+    this.alarms = newAlarms;
+    this.alarms.forEach((alarm, index) => {
+        const container = alarmContainers[index];
+        if (container) {
+            const existingId = container.querySelector('.ignore-text-wrapper').getAttribute('data-id');
+
+            // 알람이 아예 없거나, ID가 달라진 경우에만 업데이트
+            if (!existingId || existingId !== alarm.id) {
+                this.updateAlarmElement(container, alarm);
+            }
+            
+            // 알람이 존재하면 'show' 클래스를 추가하여 표시합니다.
+            container.classList.add('show');
+        }
+    });
+
+    // 3. 알람 목록에 없는 빈 컨테이너를 숨깁니다.
+    for (let i = this.alarms.length; i < 3; i++) {
+        const container = alarmContainers[i];
+        if (container) {
+            container.classList.remove('show');
+        }
+    }
+}
+
+        updateAlarmElement(container, alarm) {
+
+    container.style.display = 'block';
+    const title = container.querySelector('.alarm-title');
+    const description = container.querySelector('.alarm-description');
+    const time = container.querySelector('.time-text');
+    const icon = container.querySelector('.alarm-icon');
+    const interfacesButtonWrapper = container.querySelector('.interfaces-button-wrapper');
+    const interfacesDropdown = container.querySelector('.interfaces-dropdown');
+    const opticPowerButtonWrapper = container.querySelector('.optic-power-text-wrapper');
+    const ignoreButton = container.querySelector('.ignore-text-wrapper');
+    const logButton = container.querySelector('.log-button');
+
+    if (ignoreButton) {
+      ignoreButton.setAttribute('data-id', alarm.id);
+    }
+      
+    if (title) title.textContent = alarm.title;
+    if (description) description.innerHTML = alarm.description;
+    if (time) time.textContent = alarm.time;
+    if (icon) {
+      icon.className = `alarm-icon ${alarm.type}`;
+      icon.textContent = "!";
+    }
+  
+    if (opticPowerButtonWrapper) opticPowerButtonWrapper.style.display = 'none';
+    if (interfacesButtonWrapper) interfacesButtonWrapper.style.display = 'none';
+    if (logButton) logButton.style.display = 'none';
+
+    if (opticPowerButtonWrapper) opticPowerButtonWrapper.onclick = null;
+    if (interfacesButtonWrapper) interfacesButtonWrapper.onclick = null;
+    if (logButton) logButton.onclick = null;
+    
+
+    //시나리오 1 상황
+    if (alarm.show_optic_power_button && opticPowerButtonWrapper) {
+      opticPowerButtonWrapper.style.display = 'block';
+      opticPowerButtonWrapper.onclick = () => {
+        this.showOpticPowerPopup(
+          alarm.optic_power_data.output_power,
+          alarm.optic_power_data.rx_optical_power,
+          alarm.device,
+          alarm.interface_name
+        );
+      };
+      opticPowerButtonWrapper.classList.add('clickable-button');
+    } 
+    //시나리오 3 상황
+    else if (alarm.show_interfaces_button && interfacesButtonWrapper) {
+      interfacesButtonWrapper.style.display = 'block';
+      const interfacesDropdown = interfacesButtonWrapper.querySelector('.interfaces-dropdown');
+      
+      interfacesDropdown.innerHTML = '';
+      alarm.interfaces.forEach(iface => {
+        const item = document.createElement('div');
+        item.className = 'item';
+        item.textContent = `${iface.interface} (${iface.rate_diff}%)`;
+        interfacesDropdown.appendChild(item);
+      });
+
+      interfacesButtonWrapper.onclick = () => {
+        const isVisible = interfacesDropdown.style.display === 'block';
+        interfacesDropdown.style.display = isVisible ? 'none' : 'block';
+      };
+      interfacesButtonWrapper.classList.add('clickable-button');
+    } 
+    //시나리오 2 상황
+    else if (alarm.show_log_button && logButton) {
+      logButton.style.display = 'block';
+      logButton.onclick = () => {
+        alert(alarm.log_description);
+      };
+      logButton.classList.add('clickable-button');
+    }
+  }
+
+
+
+        displayAgentAnalysis(text) {
+            const content = document.getElementById('analysisContent');
+            const textElement = document.getElementById('analysisText');
+
+            textElement.innerHTML = text || '';
+            content.style.display = 'block';
+        }
+
+            
+        setLoading(isLoading) {
+            const loading = document.getElementById('loading');
+            const sendButton = document.getElementById('sendButton');
+              
+            loading.classList.toggle('show', isLoading);
+            if (sendButton) {
+              sendButton.disabled = isLoading;
+            }
+          }
+
+        showNotification(message, type) {
+            const notification = document.getElementById('notification');
+            notification.textContent = message;
+            notification.className = `notification ${type}`;
+            notification.classList.add('show');
+              
+            setTimeout(() => {
+              notification.classList.remove('show');
+            }, 10000);
+        }
+
+        async checkSystemHealth() {
+            try {
+              const response = await fetch('/health');
+              if (response.ok) {
+                const data = await response.json();
+                console.log('System health:', data);
+              } else {
+                const errorText = await response.text();
+                console.error('Health check failed:', response.status, errorText);
+              }
+            } catch (error) {
+              console.error('Health check failed:', error);
+            }
+          }
+        }
+          
+        document.addEventListener('DOMContentLoaded', () => {
+          window.networkApp = new NetworkMonitorApp();
+        });
+    </script>
+  </body>
+</html>

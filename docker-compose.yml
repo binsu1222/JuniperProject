@@ -1,0 +1,27 @@
+services:
+  web:
+    build: .
+    ports:
+      - "5001:5000"   # 환경변수 활용
+    volumes:
+      - ./templates:/app/templates
+    env_file:
+      - .env
+    environment:
+      - APP_PORT=${APP_PORT:-5000}
+      - FLASK_ENV=${FLASK_ENV:-production}
+      - FLASK_DEBUG=${FLASK_DEBUG:-false}
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+    healthcheck:
+      test: ["CMD", "curl", "-fsS", "http://localhost:${APP_PORT:-5000}/health"]
+      interval: 15s
+      timeout: 3s
+      retries: 5
+      start_period: 30s
+    restart: unless-stopped
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "10m"
+        max-file: "3"
