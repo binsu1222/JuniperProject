@@ -1,5 +1,7 @@
 장애 탐지 대시보드 웹서버 (Backend Gateway)
-![대시보드](images/dashboard.png)
+ <img src="images/dashboard.png" alt="대시보드 메인 화면" width="48%">
+    <img src="images/flow.png" alt="프로젝트 전체 흐름" width="48%">
+</div>
 📚 프로젝트 소개
 
 본 프로젝트는 네트워크 시스템에서 발생하는 비정상적인 트래픽과 장애를 탐지하고, 분석 결과를 시각적으로 보여주는 장애 탐지 대시보드의 웹서버 역할을 담당합니다.
